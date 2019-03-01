@@ -17,6 +17,7 @@
 - [DBpedia interlinking](https://wiki.dbpedia.org/services-resources/interlinking)
 - [Linked Data: Evolving the Web into a Global Data Space](http://linkeddatabook.com/editions/1.0/)
 - [LIMES](http://aksw.org/Projects/LIMES.html)
+- [Silk](http://silkframework.org/)
 
 ### External sources to graphs
 - [Synthesizing Knowledge Graphs from WebSources with the MINTE+ Framework](https://www.researchgate.net/profile/Diego_Collarana/publication/325381996_Synthesizing_Knowledge_Graphs_from_web_sources_with_the_MINTE_framework/links/5b290b4b0f7e9b1d003575ca/Synthesizing-Knowledge-Graphs-from-web-sources-with-the-MINTE-framework.pdf)
