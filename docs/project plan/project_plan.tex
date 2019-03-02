@@ -11,7 +11,7 @@
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage[pdftex]{graphicx}	
 \usepackage{url}
-\usepackage[natbib=true,backend=biber]{biblatex}
+\usepackage[natbib=true,backend=biber,bibencoding=utf8]{biblatex}
 \addbibresource{references.bib}
 \AtBeginBibliography{\small}
 
@@ -117,5 +117,13 @@ Specifically, if this project success it could help to improve the consistency a
 
 %%% Bibliography
 {\tiny\printbibliography}
+
+\appendix
+\section{Gantt of the project}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[angle=90,width=0.22\textwidth]{project_gantt.png}
+    \caption{Gantt of the project}
+\end{figure}
 %%% End document
 \end{document}
