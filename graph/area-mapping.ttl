@@ -1,0 +1,65 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> . # For preflabel and altlabel
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix edm: <http://www.europeana.eu/schemas/edm/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+
+<#CountriesTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT gid, area.name AS name, with_alias.aliases AS aliases, code
+        FROM area
+            INNER JOIN iso_3166_1 AS iso
+                        ON area.id = iso.area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class edm:country
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+            rr:language "en"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the country code
+    rr:predicateObjectMap [
+        rr:predicate dbo:iso31661Code;
+        rr:objectMap [ 
+            rr:column "code";
+            rr:datatype xsd:string
+        ];
+    ].
