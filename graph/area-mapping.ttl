@@ -2,10 +2,15 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> . # For preflabel and altlabel
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lgdo: <http://linkedgeodata.org/page/ontology/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix edm: <http://www.europeana.eu/schemas/edm/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> . # For preflabel and altlabel
 @prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 
 <#CountriesTriples>
     a rr:TriplesMap;
@@ -27,7 +32,7 @@
     # Define the subject of the generated statements
     rr:subjectMap [
         rr:template "http://musicbrainz.org/area/{gid}";
-        rr:class edm:country
+        rr:class lgdo:Country
     ];
 
     # Label
@@ -43,7 +48,6 @@
         rr:predicate skos:prefLabel;
         rr:objectMap [ 
             rr:column "name";
-            rr:language "en"
         ]
     ];
 
@@ -61,5 +65,371 @@
         rr:objectMap [ 
             rr:column "code";
             rr:datatype xsd:string
+        ];
+    ];
+
+<#SubdivisionsTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 2;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class lgdo:Subdivision
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#CitiesTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 3;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class lgdo:City
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#MunicipalitiesTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 4;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class lgdo:Municipality
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#DistrictsTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 5;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class dbo:district
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#IslandTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 6;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class lgdo:Island
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#CountiesTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        FROM area
+            -- With this we obtain the aliases of the area
+            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
+                        FROM area a
+                                INNER JOIN area_alias
+                                            ON a.id = area_alias.area
+                        GROUP BY a.name) AS with_alias
+                        ON area.name = with_alias.name
+            -- With this we obtain the gid and the name of the parent area
+            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
+                        FROM l_area_area rel_area
+                                JOIN area area_parent
+                                    ON rel_area.entity0 = area_parent.id) AS relation
+                        ON area.id = relation.entity1
+        WHERE type = 7;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+        rr:class lgdo:County
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:prefLabel;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "aliases"
+        ];
+    ];
+
+    # Link to the parent area
+    rr:predicateObjectMap [
+        rr:predicate dcterms:isPartOf;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{parent_gid}";
         ];
     ].
