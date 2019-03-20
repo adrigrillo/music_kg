@@ -1,0 +1,420 @@
+id,name
+1,acid house
+2,acid jazz
+3,acid techno
+4,acoustic blues
+5,acoustic rock
+6,afrobeat
+7,alternative country
+8,alternative dance
+9,alternative folk
+10,alternative hip hop
+11,alternative metal
+12,alternative pop
+13,alternative punk
+14,alternative rock
+15,ambient
+16,ambient house
+17,ambient techno
+18,americana
+19,anarcho-punk
+20,aor
+21,arena rock
+22,art rock
+23,atmospheric black metal
+24,audiobook
+25,avant-garde
+26,avant-garde jazz
+27,avant-garde metal
+28,avant-garde pop
+29,bachata
+30,ballad
+31,barbershop
+32,baroque
+33,bebop
+34,bhangra
+35,big band
+36,big beat
+37,blackgaze
+38,black metal
+39,blackened death metal
+40,blue-eyed soul
+41,bluegrass
+42,blues
+43,blues rock
+44,bolero
+45,bolero son
+46,boom bap
+47,bossa nova
+48,breakbeat
+49,breakcore
+50,breaks
+51,britpop
+52,broken beat
+53,brutal death metal
+54,bubblegum pop
+55,cajun
+56,calypso
+57,cantopop
+58,canterbury scene
+59,celtic
+60,celtic punk
+61,chamber pop
+62,champeta
+63,chanson
+64,chicago blues
+65,chillout
+66,chiptune
+67,christian rock
+68,christmas music
+69,city pop
+70,classic blues
+71,classic country
+72,classic jazz
+73,classic rock
+74,classical
+75,club
+76,comedy
+77,conscious hip hop
+78,contemporary christian
+79,contemporary classical
+80,contemporary folk
+81,contemporary gospel
+82,contemporary jazz
+83,contemporary r&b
+84,contra
+85,cool jazz
+86,country
+87,country blues
+88,country folk
+89,country pop
+90,country rock
+91,crossover prog
+92,crust punk
+93,cumbia
+94,d-beat
+95,dance
+96,dance-pop
+97,dance-punk
+98,dancehall
+99,dark ambient
+100,dark electro
+101,dark folk
+102,dark wave
+103,death metal
+104,death-doom metal
+105,deathcore
+106,deathgrind
+107,deathrock
+108,deep house
+109,delta blues
+110,desert rock
+111,digital hardcore
+112,disco
+113,doo-wop
+114,doom metal
+115,downtempo
+116,drill
+117,drone
+118,drum and bass
+119,dub
+120,dub techno
+121,dubstep
+122,dungeon synth
+123,east coast hip hop
+124,ebm
+125,electric blues
+126,electro
+127,electro house
+128,electro swing
+129,electro-funk
+130,electro-industrial
+131,electroclash
+132,electronic
+133,electronic rock
+134,electronica
+135,electronicore
+136,electropop
+137,electropunk
+138,emo
+139,emocore
+140,enka
+141,ethereal
+142,euro house
+143,eurodance
+144,europop
+145,experimental
+146,experimental rock
+147,fado
+148,filk
+149,flamenco
+150,folk
+151,folk metal
+152,folk punk
+153,folk rock
+154,folk pop
+155,freak folk
+156,free improvisation
+157,free jazz
+158,funk
+159,funk carioca
+160,funk metal
+161,funk rock
+162,funk soul
+163,funky house
+164,fusion
+165,future jazz
+166,futurepop
+167,g-funk
+168,gabber
+169,gangsta rap
+170,garage
+171,garage house
+172,garage punk
+173,garage rock
+174,glam
+175,glam metal
+176,glam rock
+177,glitch
+178,goa trance
+179,goregrind
+180,gospel
+181,gothic
+182,gothic metal
+183,gothic rock
+184,grebo
+185,grime
+186,grindcore
+187,groove metal
+188,grunge
+189,guaracha
+190,happy hardcore
+191,hard bop
+192,hard house
+193,hard rock
+194,hard trance
+195,hardcore techno
+196,hardcore punk
+197,hardstyle
+198,heavy metal
+199,hip hop
+200,honky tonk
+201,horrorcore
+202,horror punk
+203,house
+204,idm
+205,illbient
+206,indie
+207,indie folk
+208,indie pop
+209,indie rock
+210,indietronica
+211,indorock
+212,industrial
+213,industrial metal
+214,industrial rock
+215,instrumental
+216,instrumental jazz
+217,instrumental rock
+218,irish folk
+219,italo-disco
+220,j-pop
+221,j-rock
+222,jazz
+223,jazz blues
+224,jazz fusion
+225,jazz rap
+226,jazz rock
+227,jazz-funk
+228,jungle
+229,k-pop
+230,kayōkyoku
+231,kizomba
+232,klezmer
+233,krautrock
+234,latin
+235,latin jazz
+236,latin pop
+237,latin rock
+238,leftfield
+239,line dance
+240,lo-fi
+241,lovers rock
+242,lounge
+243,madchester
+244,mainstream rock
+245,mambo
+246,mandopop
+247,martial industrial
+248,math rock
+249,mathcore
+250,medieval
+251,melodic black metal
+252,melodic death metal
+253,melodic metalcore
+254,melodic rock
+255,melodic trance
+256,mento
+257,merengue
+258,metal
+259,metalcore
+260,microhouse
+261,milonga
+262,min'yō
+263,mincecore
+264,minimal
+265,modern blues
+266,modern classical
+267,modern country
+268,motown
+269,mpb
+270,musical
+271,neo soul
+272,neo-progressive rock
+273,neo-rockabilly
+274,neofolk
+275,nerdcore
+276,new age
+277,new jack swing
+278,new romantic
+279,new wave
+280,no wave
+281,noise
+282,noisecore
+283,noise pop
+284,non-music
+285,norteño
+286,northern soul
+287,nu jazz
+288,nu metal
+289,occult rock
+290,oi
+291,old-time
+292,old school death metal
+293,opera
+294,orchestral
+295,outlaw country
+296,p-funk
+297,pachanga
+298,pop
+299,pop metal
+300,pop punk
+301,pop rap
+302,pop rock
+303,pop soul
+304,pornogrind
+305,post-bop
+306,post-classical
+307,post-grunge
+308,post-hardcore
+309,post-metal
+310,post-punk
+311,post-rock
+312,powerviolence
+313,power electronics
+314,power metal
+315,power pop
+316,production music
+317,progressive
+318,progressive folk
+319,progressive house
+320,progressive metal
+321,progressive rock
+322,progressive trance
+323,psy-trance
+324,psychedelic
+325,psychedelic folk
+326,psychedelic pop
+327,psychedelic rock
+328,psychobilly
+329,psytrance
+330,punk
+331,punk rock
+332,queercore
+333,r&b
+334,ragga
+335,ragga hip-hop
+336,ragga jungle
+337,raï
+338,ragtime
+339,ranchera
+340,rap rock
+341,rapcore
+342,rave
+343,reggae
+344,reggaeton
+345,rhythmic noise
+346,rock
+347,rock and roll
+348,rockabilly
+349,rocksteady
+350,roots reggae
+351,rumba
+352,salsa
+353,samba
+354,schlager
+355,screamo
+356,shibuya-kei
+357,shoegaze
+358,singer-songwriter
+359,ska
+360,ska punk
+361,skacore
+362,slow waltz
+363,sludge metal
+364,smooth jazz
+365,smooth soul
+366,soca
+367,soft rock
+368,son cubano
+369,son montuno
+370,soul
+371,soul jazz
+372,southern rock
+373,southern soul
+374,space rock
+375,speed garage
+376,speed metal
+377,spoken word
+378,stoner metal
+379,stoner rock
+380,street punk
+381,surf rock
+382,swing
+383,symphonic black metal
+384,symphonic metal
+385,symphonic prog
+386,symphonic rock
+387,symphony
+388,synthwave
+389,synth-pop
+390,tango
+391,tech house
+392,technical death metal
+393,techno
+394,teen pop
+395,thrashcore
+396,thrash metal
+397,timba
+398,traditional country
+399,trance
+400,trap
+401,trap edm
+402,tribal house
+403,trip hop
+404,turntablism
+405,uk drill
+406,uk garage
+407,underground hip hop
+408,vallenato
+409,vaporwave
+410,viking metal
+411,visual kei
+412,vocal house
+413,vocal jazz
+414,vocal trance
+415,west coast hip hop
+416,west coast swing
+417,yé-yé
+418,zamrock
+419,zydeco
