@@ -1,3 +1,5 @@
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,6 +13,7 @@
 @prefix dbo: <http://dbpedia.org/ontology/> .
 @prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
 @prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@base <http://adrigrillo.github.io/music_kg> .
 
 <#CountriesTriples>
     a rr:TriplesMap;
@@ -66,7 +69,7 @@
             rr:column "code";
             rr:datatype xsd:string
         ];
-    ];
+    ].
 
 <#SubdivisionsTriples>
     a rr:TriplesMap;
@@ -83,12 +86,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 2;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 2 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -144,12 +150,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 3;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 3 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -205,12 +214,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 4;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 4 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -266,12 +278,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 5;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 5 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -327,12 +342,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 6;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 6 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -388,12 +406,15 @@
                         GROUP BY a.name) AS with_alias
                         ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
-            LEFT JOIN (SELECT entity0, entity1, area_parent.gid
-                        FROM l_area_area rel_area
-                                JOIN area area_parent
-                                    ON rel_area.entity0 = area_parent.id) AS relation
-                        ON area.id = relation.entity1
-        WHERE type = 7;
+            JOIN (SELECT entity0, entity1, link, area_parent.gid
+                    FROM l_area_area rel_area
+                            JOIN area area_parent
+                                ON rel_area.entity0 = area_parent.id) AS relation
+                    ON area.id = relation.entity1
+            JOIN (SELECT id, link_type
+                    FROM link) AS lk_tp
+                    ON relation.link = lk_tp.id
+        WHERE type = 7 AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
