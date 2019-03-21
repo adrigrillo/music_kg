@@ -1,5 +1,6 @@
 # Output files
 *.ttl.gz
+*.nt.gz
 *.pdf
 
 ### Java ###
