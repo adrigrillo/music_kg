@@ -20,16 +20,10 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT gid, area.name AS name, with_alias.aliases AS aliases, code
+        SELECT gid, name, code
         FROM area
-            INNER JOIN iso_3166_1 AS iso
-                        ON area.id = iso.area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name;
+            INNER JOIN iso_3166_1
+                        ON area.id = iso_3166_1.area;
         """ ];
 
     # Define the subject of the generated statements
@@ -54,14 +48,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the country code
     rr:predicateObjectMap [
         rr:predicate dbo:iso31661Code;
@@ -76,15 +62,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -94,7 +73,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 2 AND lk_tp.link_type = 356;
+        WHERE type = 2
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -119,14 +99,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
@@ -140,15 +112,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -158,7 +123,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 3 AND lk_tp.link_type = 356;
+        WHERE type = 3
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -183,14 +149,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
@@ -204,15 +162,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -222,7 +173,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 4 AND lk_tp.link_type = 356;
+        WHERE type = 4
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -247,14 +199,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
@@ -268,15 +212,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -286,7 +223,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 5 AND lk_tp.link_type = 356;
+        WHERE type = 5
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -311,14 +249,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
@@ -332,15 +262,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -350,7 +273,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 6 AND lk_tp.link_type = 356;
+        WHERE type = 6
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -375,14 +299,6 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
@@ -396,15 +312,8 @@
 
     # Define the data source
     rr:logicalTable [ rr:sqlQuery """
-        SELECT area.gid, area.name AS name, with_alias.aliases AS aliases, relation.gid AS parent_gid
+        SELECT area.gid, area.name AS name, relation.gid AS parent_gid
         FROM area
-            -- With this we obtain the aliases of the area
-            LEFT JOIN (SELECT a.name, string_agg(area_alias.name, ', ') AS aliases
-                        FROM area a
-                                INNER JOIN area_alias
-                                            ON a.id = area_alias.area
-                        GROUP BY a.name) AS with_alias
-                        ON area.name = with_alias.name
             -- With this we obtain the gid and the name of the parent area
             JOIN (SELECT entity0, entity1, link, area_parent.gid
                     FROM l_area_area rel_area
@@ -414,7 +323,8 @@
             JOIN (SELECT id, link_type
                     FROM link) AS lk_tp
                     ON relation.link = lk_tp.id
-        WHERE type = 7 AND lk_tp.link_type = 356;
+        WHERE type = 7
+        AND lk_tp.link_type = 356;
         """ ];
 
     # Define the subject of the generated statements
@@ -439,18 +349,35 @@
         ]
     ];
 
-    # Link to the alternative names of the country
-    rr:predicateObjectMap [
-        rr:predicate skos:altLabel;
-        rr:objectMap [ 
-            rr:column "aliases"
-        ];
-    ];
-
     # Link to the parent area
     rr:predicateObjectMap [
         rr:predicate dcterms:isPartOf;
         rr:objectMap [ 
             rr:template "http://musicbrainz.org/area/{parent_gid}";
+        ];
+    ].
+
+<#AliasTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT area.gid AS gid, area_alias.name AS alias
+        FROM area
+            LEFT JOIN area_alias
+                        ON area.id = area_alias.area
+        WHERE area.name != area_alias.name;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/area/{gid}";
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "alias";
         ];
     ].
