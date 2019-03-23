@@ -42,7 +42,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -93,7 +93,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -143,7 +143,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -193,7 +193,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -243,7 +243,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -293,7 +293,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
@@ -343,7 +343,7 @@
 
     # Link to the alternative names of the country
     rr:predicateObjectMap [
-        rr:predicate skos:prefLabel;
+        rr:predicate foaf:name;
         rr:objectMap [ 
             rr:column "name";
         ]
