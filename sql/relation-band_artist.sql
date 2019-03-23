@@ -37,38 +37,82 @@ WHERE artist.type = 1
 LIMIT 50;
 
 -- With this you can obtain the members of a band
-SELECT artist.gid,
-       artist.name AS name,
-       artist.type,
-       relation.gid,
-       relation.name,
-       relation.type,
+SELECT artist.gid    AS member_gid,
+       artist.name   AS member_name,
+       relation.gid  AS band_gid,
+       relation.name AS band_name,
        relation.link_type
 FROM artist
        -- With this we obtain the gid and the name of the parent artist
-       LEFT JOIN (SELECT entity0,
-                         entity1,
-                         link_info.link_type,
-                         artist_parent.gid,
-                         artist_parent.name,
-                         artist_parent.type
-                  FROM l_artist_artist rel_artist
-                         LEFT JOIN artist artist_parent
-                                   ON rel_artist.entity0 = artist_parent.id
-                         LEFT JOIN link link_info
-                                   ON rel_artist.link = link_info.id
-                         LEFT JOIN link_type type_of_link
-                                   ON link_info.link_type = type_of_link.id
-                  WHERE type_of_link.parent = 106) AS relation
-                 ON artist.id = relation.entity1
-WHERE artist.gid = '66c662b6-6e2f-4930-8610-912e24c63ed1'
-LIMIT 50;
+       INNER JOIN (SELECT entity0,
+                          entity1,
+                          link_info.link_type,
+                          artist_parent.gid,
+                          artist_parent.name
+                   FROM l_artist_artist rel_artist
+                          JOIN artist artist_parent
+                               ON rel_artist.entity1 = artist_parent.id
+                          JOIN link link_info
+                               ON rel_artist.link = link_info.id
+                   WHERE link_info.link_type = 103) AS relation
+                  ON artist.id = relation.entity0;
 
+-- Query for the supporting artist of a group
+SELECT artist.gid    AS supporter_gid,
+       artist.name   AS supporter_name,
+       relation.gid  AS band_gid,
+       relation.name AS band_name,
+       relation.link_type
+FROM artist
+       -- With this we obtain the gid and the name of the parent artist
+       INNER JOIN (SELECT entity0,
+                          entity1,
+                          link_info.link_type,
+                          artist_parent.gid,
+                          artist_parent.name
+                   FROM l_artist_artist rel_artist
+                          JOIN artist artist_parent
+                               ON rel_artist.entity1 = artist_parent.id
+                          JOIN link link_info
+                               ON rel_artist.link = link_info.id
+                   WHERE link_info.link_type = 104) AS relation
+                  ON artist.id = relation.entity0;
+
+-- Type of root links
 SELECT *
 FROM link_type
 WHERE parent IS NULL;
 
-
+-- Type of links with a parent specified
 SELECT *
 FROM link_type
-WHERE id = 106;
+WHERE parent = 841;
+
+-- Check if there is any link of type collaboration
+SELECT l_artist_artist.id, link.link_type, entity1, a1.name, entity0, a0.name
+FROM l_artist_artist
+       INNER JOIN link ON l_artist_artist.link = link.id
+       JOIN artist a0 ON l_artist_artist.entity0 = a0.id
+       JOIN artist a1 ON l_artist_artist.entity1 = a1.id
+WHERE link_type = 102;
+
+-- Query for collaborations
+SELECT artist.gid AS collaborator_gid,
+       artist.name AS collaborator_name,
+       relation.gid AS collaborated_gid,
+       relation.name AS collaborated_name,
+       relation.link_type
+FROM artist
+       -- With this we obtain the gid and the name of the parent artist
+       INNER JOIN (SELECT entity0,
+                          entity1,
+                          link_info.link_type,
+                          artist_parent.gid,
+                          artist_parent.name
+                   FROM l_artist_artist rel_artist
+                          JOIN artist artist_parent
+                               ON rel_artist.entity1 = artist_parent.id
+                          JOIN link link_info
+                               ON rel_artist.link = link_info.id
+                   WHERE link_info.link_type = 102) AS relation
+                  ON artist.id = relation.entity0;

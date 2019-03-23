@@ -17,10 +17,10 @@ SELECT artist.gid,
        artist.name AS name,
        artist.type
 FROM artist
-WHERE artist.type = 1 AND gid=
+WHERE artist.type = 1
 LIMIT 50;
 
--- Queries to extract the information about artist as a person
+-- Queries to the members of a group using the type
 SELECT artist.gid,
        artist.name AS name,
        artist.type,

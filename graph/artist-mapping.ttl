@@ -1,0 +1,422 @@
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lgdo: <http://linkedgeodata.org/page/ontology/> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> . # For preflabel and altlabel
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
+@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
+@prefix ov: <http://open.vocab.org/terms/> .
+@prefix bio: <http://purl.org/vocab/bio/0.1/> .
+@base <http://adrigrillo.github.io/music_kg> .
+
+<#IndividualsTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid,
+            artist.name,
+            artist.sort_name,
+            artist.begin_date_year,
+            artist.end_date_year,
+            CASE
+                WHEN artist.gender = 1 THEN 'male'
+                WHEN artist.gender = 2 THEN 'female'
+                END  AS gender,
+            area.gid AS area_gid
+        FROM artist
+            LEFT JOIN area
+                        ON artist.area = area.id
+        WHERE artist.type = 1
+        OR artist.type = 4;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+        rr:class mo:MusicArtist
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Name of the artist
+    rr:predicateObjectMap [
+        rr:predicate foaf:name;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Sort name
+    rr:predicateObjectMap [
+        rr:predicate ov:sortLabel;
+        rr:objectMap [ 
+            rr:column "sort_name"
+        ]
+    ];
+
+    # Birth year
+    rr:predicateObjectMap [
+        rr:predicate bio:Birth;
+        rr:objectMap [ 
+            rr:column "begin_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Death year
+    rr:predicateObjectMap [
+        rr:predicate bio:Death;
+        rr:objectMap [ 
+            rr:column "end_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Gender
+    rr:predicateObjectMap [
+        rr:predicate foaf:gender;
+        rr:objectMap [ 
+            rr:column "gender";
+            rr:datatype xsd:string
+        ]
+    ];
+
+    # Relation with an area
+    rr:predicateObjectMap [
+        rr:predicate foaf:based_near;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{area_gid}"
+        ]
+    ].
+
+<#GroupsTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid,
+            artist.name,
+            artist.sort_name,
+            artist.begin_date_year,
+            artist.end_date_year,
+            area.gid AS area_gid
+        FROM artist
+            LEFT JOIN area
+                        ON artist.area = area.id
+        WHERE artist.type = 2
+        OR artist.type = 5
+        OR artist.type = 6;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+        rr:class mo:MusicGroup
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Name of the artist
+    rr:predicateObjectMap [
+        rr:predicate foaf:name;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Sort name
+    rr:predicateObjectMap [
+        rr:predicate ov:sortLabel;
+        rr:objectMap [ 
+            rr:column "sort_name"
+        ]
+    ];
+
+    # Foundation year
+    rr:predicateObjectMap [
+        rr:predicate mo:activity_start;
+        rr:objectMap [ 
+            rr:column "begin_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Dissolution year
+    rr:predicateObjectMap [
+        rr:predicate mo:activity_end;
+        rr:objectMap [ 
+            rr:column "end_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Relation with an area
+    rr:predicateObjectMap [
+        rr:predicate foaf:based_near;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{area_gid}"
+        ]
+    ].
+
+<#OtherTriples>
+    a rr:TriplesMap;
+
+    # Define the data source, as unkown type we obtain all possible info
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid,
+            artist.name,
+            artist.sort_name,
+            artist.begin_date_year,
+            artist.end_date_year,
+            CASE
+                WHEN artist.gender = 1 THEN 'male'
+                WHEN artist.gender = 2 THEN 'female'
+                END  AS gender,
+            area.gid AS area_gid
+        FROM artist
+            LEFT JOIN area
+                        ON artist.area = area.id
+        WHERE artist.type = 3;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+        rr:class mo:MusicArtist
+    ];
+
+    # Label
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [ 
+            rr:column "name"
+        ]
+    ];
+
+    # Name of the artist
+    rr:predicateObjectMap [
+        rr:predicate foaf:name;
+        rr:objectMap [ 
+            rr:column "name";
+            rr:datatype xsd:string
+        ]
+    ];
+
+    # Sort name
+    rr:predicateObjectMap [
+        rr:predicate ov:sortLabel;
+        rr:objectMap [ 
+            rr:column "sort_name";
+        ]
+    ];
+
+    # Activity start year
+    rr:predicateObjectMap [
+        rr:predicate mo:activity_start;
+        rr:objectMap [ 
+            rr:column "begin_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Activity end year
+    rr:predicateObjectMap [
+        rr:predicate mo:activity_end;
+        rr:objectMap [ 
+            rr:column "end_date_year";
+            rr:datatype xsd:int
+        ]
+    ];
+
+    # Gender
+    rr:predicateObjectMap [
+        rr:predicate foaf:gender;
+        rr:objectMap [ 
+            rr:column "gender";
+            rr:datatype xsd:string
+        ]
+    ];
+
+    # Relation with an area
+    rr:predicateObjectMap [
+        rr:predicate foaf:based_near;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/area/{area_gid}";
+        ]
+    ].
+
+<#GroupMembersTriples>
+    a rr:TriplesMap;
+
+    # Define the data source, link_type 103 = band member
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid   AS member_gid,
+            relation.gid AS band_gid
+        FROM artist
+            INNER JOIN (SELECT entity0,
+                                entity1,
+                                link_info.link_type,
+                                artist_parent.gid
+                        FROM l_artist_artist rel_artist
+                                JOIN artist artist_parent
+                                    ON rel_artist.entity1 = artist_parent.id
+                                JOIN link link_info
+                                    ON rel_artist.link = link_info.id
+                        WHERE link_info.link_type = 103) AS relation
+                        ON artist.id = relation.entity0;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{band_gid}";
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate mo:member;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/artist/{member_gid}";
+        ];
+    ].
+
+<#SupportingMusiciansTriples>
+    a rr:TriplesMap;
+
+    # Define the data source, link_type 104 = supporting musician
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid   AS supporter_gid,
+            relation.gid    AS band_gid
+        FROM artist
+            INNER JOIN (SELECT entity0,
+                                entity1,
+                                link_info.link_type,
+                                artist_parent.gid
+                        FROM l_artist_artist rel_artist
+                                JOIN artist artist_parent
+                                    ON rel_artist.entity1 = artist_parent.id
+                                JOIN link link_info
+                                    ON rel_artist.link = link_info.id
+                        WHERE link_info.link_type = 104) AS relation
+                        ON artist.id = relation.entity0;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{band_gid}";
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate mo:member;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/artist/{supporter_gid}";
+        ];
+    ].
+
+<#CollaborationTriples>
+    a rr:TriplesMap;
+
+    # Define the data source, link_type 102 = supporting musician
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid AS collaborator_gid,
+            relation.gid  AS collaborated_gid,
+            relation.link_type
+        FROM artist
+            INNER JOIN (SELECT entity0,
+                                entity1,
+                                link_info.link_type,
+                                artist_parent.gid
+                        FROM l_artist_artist rel_artist
+                                JOIN artist artist_parent
+                                    ON rel_artist.entity1 = artist_parent.id
+                                JOIN link link_info
+                                    ON rel_artist.link = link_info.id
+                        WHERE link_info.link_type = 102) AS relation
+                        ON artist.id = relation.entity0;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{collaborator_gid}";
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate mo:collaborated_with;
+        rr:objectMap [ 
+            rr:template "http://musicbrainz.org/artist/{collaborated_gid}";
+        ];
+    ].
+
+<#AliasTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid AS gid, artist_alias.name AS alias
+        FROM artist
+            JOIN artist_alias
+                    ON artist.id = artist_alias.artist
+        WHERE artist.name != artist_alias.name;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+    ];
+
+    # Link to the alternative names of the country
+    rr:predicateObjectMap [
+        rr:predicate skos:altLabel;
+        rr:objectMap [ 
+            rr:column "alias";
+        ]
+    ].
+
+<#GenresTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid AS gid, tag_name.name AS name
+        FROM artist
+            JOIN (SELECT art_tags.artist, tag_desc.name AS name
+                        FROM artist_tag art_tags
+                                JOIN tag tag_desc
+                                    ON art_tags.tag = tag_desc.id) AS tag_name
+                        ON artist.id = tag_name.artist;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+    ];
+
+    # Because the creation of a url fails because of the encoding, we will use a string
+    rr:predicateObjectMap [
+        rr:predicate dbo:genre;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ].
