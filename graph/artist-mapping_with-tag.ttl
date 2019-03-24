@@ -391,3 +391,30 @@
             rr:column "alias";
         ]
     ].
+
+<#GenresTriples>
+    a rr:TriplesMap;
+
+    # Define the data source
+    rr:logicalTable [ rr:sqlQuery """
+        SELECT artist.gid AS gid, tag_name.name AS name
+        FROM artist
+            JOIN (SELECT art_tags.artist, tag_desc.name AS name
+                        FROM artist_tag art_tags
+                                JOIN tag tag_desc
+                                    ON art_tags.tag = tag_desc.id) AS tag_name
+                        ON artist.id = tag_name.artist;
+        """ ];
+
+    # Define the subject of the generated statements
+    rr:subjectMap [
+        rr:template "http://musicbrainz.org/artist/{gid}";
+    ];
+
+    # Because the creation of a url fails because of the encoding, we will use a string
+    rr:predicateObjectMap [
+        rr:predicate dbo:genre;
+        rr:objectMap [ 
+            rr:column "name";
+        ]
+    ].
