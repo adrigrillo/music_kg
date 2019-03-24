@@ -11,8 +11,6 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> . # For preflabel and altlabel
 @prefix dbo: <http://dbpedia.org/ontology/> .
-@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
-@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 @base <http://adrigrillo.github.io/music_kg> .
 
 <#CountriesTriples>

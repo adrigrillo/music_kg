@@ -11,8 +11,6 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dbo: <http://dbpedia.org/ontology/> .
-@prefix tl: <http://purl.org/NET/c4dm/timeline.owl#> .
-@prefix event: <http://purl.org/NET/c4dm/event.owl#> .
 @base <http://adrigrillo.github.io/music_kg> .
 
 <#GenresTriples>
@@ -24,16 +22,24 @@
         rml:referenceFormulation ql:CSV
     ];
 
+    # Generate a url for the entity
     rr:subjectMap [
         rr:template "http://adrigrillo.github.io/music_kg/genre/{name}";
         rr:class mo:Genre
     ];
 
+    # Label of the genre for the graph
+    rr:predicateObjectMap [
+        rr:predicate rdfs:label;
+        rr:objectMap [
+            rml:reference "name"
+        ]
+    ];
+
     # Map the name name to dc:title
     rr:predicateObjectMap [
-        rr:predicate dc:title;
+        rr:predicate foaf:name;
         rr:objectMap [
-            rml:reference "name";
-            rr:language "en"
+            rml:reference "name"
         ]
     ].
