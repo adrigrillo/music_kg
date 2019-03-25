@@ -5,4 +5,7 @@ docker run -it --rm --network="host" -v ~/Documents/knowledge_graphs/project/gra
 java -jar ~/Apps/rmlmapper.jar -m ~/Documents/knowledge_graphs/project/graph/genres-mapping.ttl -o ~/Documents/knowledge_graphs/project/graph/output/genres-graph-part.nt -s nquads -v && gzip -f -v ~/Documents/knowledge_graphs/project/graph/output/genres-graph-part.nt
 
 # Running limes
-cd ~/Documents/knowledge_graphs/project/graph/limes && java -jar ~/Apps/LIMES/limes-core-1.5.6.jar ./groups_dbpedia-config.xml
+# DBpedia
+cd ~/Documents/knowledge_graphs/project/graph/limes && java -jar ~/Apps/LIMES/limes-core-1.5.6.jar ./genres_dbpedia-config.xml
+# Wikidata
+cd ~/Documents/knowledge_graphs/project/graph/limes && java -jar ~/Apps/LIMES/limes-core-1.5.6.jar ./genres_wikidata-config.xml

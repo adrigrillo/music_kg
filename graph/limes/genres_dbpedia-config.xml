@@ -71,7 +71,7 @@
   </PREFIX>
   <SOURCE>
     <ID>musicbrainz</ID>
-    <ENDPOINT>http://137.120.219.156:7200/repositories/musicbrainz</ENDPOINT>
+    <ENDPOINT>http://192.168.2.7:7200/repositories/musicbrainz</ENDPOINT>
     <VAR>?x</VAR>
     <PAGESIZE>-1</PAGESIZE>
     <RESTRICTION>?x a mo:Genre</RESTRICTION>
@@ -90,12 +90,12 @@
   <METRIC>levenshtein(y.name,x.name)</METRIC>
   <ACCEPTANCE>
     <THRESHOLD>0.98</THRESHOLD>
-    <FILE>accepted3.nt</FILE>
+    <FILE>dbpedia-accepted.nt</FILE>
     <RELATION>owl:sameAs</RELATION>
   </ACCEPTANCE>
   <REVIEW>
     <THRESHOLD>0.5</THRESHOLD>
-    <FILE>reviewme3.nt</FILE>
+    <FILE>dbpedia-review.nt</FILE>
     <RELATION>owl:sameAs</RELATION>
   </REVIEW>
   <OUTPUT>nt</OUTPUT>
