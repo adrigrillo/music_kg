@@ -1,0 +1,12 @@
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+
+
+select ?band ?label ?genre
+where {
+  ?band dbp:class "artist"^^rdf:langString .
+  ?band dbp:label ?label .
+  ?band dbo:genre ?genre .
+} LIMIT 100
