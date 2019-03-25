@@ -1,0 +1,8 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?genre ?name 
+WHERE {
+  ?genre wdt:P31 wd:Q188451.
+  ?genre rdfs:label ?name
+  FILTER (langMatches(lang(?name), "en"))
+}

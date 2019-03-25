@@ -1,0 +1,9 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+select distinct ?genre ?title
+where {
+  ?genre a dbo:Genre .
+  ?genre rdfs:label ?title .
+  filter(langMatches(lang(?title), "en")).
+}

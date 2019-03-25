@@ -4,6 +4,7 @@
 *.pdf
 *.nt
 *.ser
+*statistics.json
 
 ### Java ###
 # Compiled class file
