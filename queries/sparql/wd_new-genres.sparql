@@ -1,0 +1,32 @@
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX : <http://adrigrillo.github.io/music_kg/genre/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+select ?wd_genre ?wd_name
+where {
+    service <https://query.wikidata.org/sparql?force=true> {
+        ?wd_genre wdt:P31 wd:Q188451.
+        ?wd_genre rdfs:label ?wd_name_lang
+        filter (lang(?wd_name_lang) = "en")
+        bind(lcase(str(?wd_name_lang)) as ?wd_name )
+        service wikibase:label { 
+            bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+        }
+    }
+    filter not exists {
+        ?genre a mo:Genre .
+   		?genre rdfs:label ?wd_name
+    }
+    filter not exists {
+        ?genre a mo:Genre .
+   		?genre owl:sameAs ?wd_genre
+    }
+}
