@@ -1,0 +1,30 @@
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+construct {
+    ?uri a mo:Genre;
+        rdfs:label ?db_name;
+        foaf:name ?db_name .
+}
+where {
+    service <http://dbpedia.org/sparql> {
+        ?db_genre a dbo:Genre .
+        ?db_genre rdfs:label ?db_name_en .
+        filter(langMatches(lang(?db_name_en), "en")).
+        bind(replace(lcase(str(?db_name_en)),"[\\(.*\\)]","") AS ?db_name)
+    }
+    filter not exists {
+        ?genre a mo:Genre .
+   		?genre rdfs:label ?db_name
+    }
+    filter not exists {
+        ?genre a mo:Genre .
+   		?genre owl:sameAs ?db_genre
+    }
+    bind(encode_for_uri(?db_name) as ?en_name)
+    bind(uri(concat("http://adrigrillo.github.io/music_kg/genre/",?en_name)) as ?uri)
+}
