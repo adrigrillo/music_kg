@@ -8,7 +8,8 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 construct {
     ?uri a mo:Genre;
         rdfs:label ?db_name;
-        foaf:name ?db_name .
+        foaf:name ?db_name;
+        owl:sameAs ?db_genre .
 }
 where {
     service <http://dbpedia.org/sparql> {

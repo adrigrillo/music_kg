@@ -12,7 +12,8 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 construct {
     ?uri a mo:Genre;
         rdfs:label ?wd_name;
-        foaf:name ?wd_name .
+        foaf:name ?wd_name;
+        owl:sameAs ?wd_genre .
 }
 where {
     service <https://query.wikidata.org/sparql?force=true> {
