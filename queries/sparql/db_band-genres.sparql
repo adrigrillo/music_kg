@@ -6,7 +6,8 @@ PREFIX dbp: <http://dbpedia.org/property/>
 
 select ?band ?label ?genre
 where {
-  ?band dbp:class "artist"^^rdf:langString .
+  ?band dbp:class ?class_type.
+  filter(str(?class_type) = "artist")
   ?band dbp:label ?label .
   ?band dbo:genre ?genre .
-} LIMIT 100
+}
