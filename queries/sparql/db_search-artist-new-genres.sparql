@@ -7,9 +7,7 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-construct {
-    ?artist dbo:genre ?genre
-}
+select ?db_artist_name ?artist ?db_genre_name ?db_artist ?db_year ?artist_year
 where {
     service <http://dbpedia.org/sparql> {
         ?db_artist foaf:name ?db_artist_name_en .
@@ -25,12 +23,11 @@ where {
         ?genre a mo:Genre .
    		?genre rdfs:label ?db_genre_name
     }
-    ?genre a mo:Genre .
     ?artist a ?type .
     filter(?type in (mo:MusicArtist, mo:MusicGroup)) . 
     ?artist rdfs:label ?db_artist_name .
-    ?artist mo:activity_start ?own_year
-    filter(str(?db_year) = str(?own_year))
+    ?artist mo:activity_start ?artist_year
+    filter(str(?db_year) = str(?artist_year))
     filter not exists {
         ?artist dbo:genre ?artist_genre .
         ?artist_genre a mo:Genre .
