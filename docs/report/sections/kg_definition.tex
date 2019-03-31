@@ -1,0 +1,20 @@
+\section{Definition of Knowledge Graph}
+When it comes to define what is a Knowledge Graph (KG), both in the academic and business world, there is not a consensus about the characteristics required to fulfil it.
+As it is explained in \citet{Ehrlinger2016} a great variety of definitions have arisen in the last years with the developments made in this field.
+In this project, a knowledge graph will be created from a relational database and will be compared and completed with the information contained in other known open knowledge graphs. 
+
+We are going to define a knowledge graph as an information storage system where the content is described and interrelated forming a network that can be seen as a graph.
+Following the mathematical definition of graph, in a knowledge graph there will be vertices, which in a KG will represent the entities, and edges, which will represent the relation between entities.  
+
+An entity is the representation of an independent thing, like a person, a place or an object, that will belong to a type defined by an ontology and will have some properties that will describe it.
+An example could be the entity ``Dave Grohl'', whose type will be ``musician'' that will be defined by an ontology and will have some properties like the name and surname that will describe the entity. 
+
+On the other hand, an edge will represent the relationships between different entities contained in the knowledge graph.
+These relationships will be also defined by an ontology and are the only way of directly relate two independent entities.
+Continuing with the previous example, ``Dave Grohl'' will be associated with the entity ``Foo Fighters'' with the relation ``is member of'', that in this case, also generates the inverse relation ``Foo Fighters'' has ``Dave Grohl'' as a member of the group. 
+
+The use of the relationships will also allow the connection of the information contained within the knowledge graph with other external sources, in a process known as interlinking.
+Moreover, apart from representing information, a KG will allow the extraction of new knowledge through the exploitation of the relationship between entities and external sources. 
+
+In this project, the Resource Description Framework (RDF) will be used to generate the graph.
+The main difference of this kind of graph regarding property graphs is that the relationships between entities do not contain properties.  
