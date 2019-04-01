@@ -359,7 +359,7 @@
         rr:template "http://musicbrainz.org/artist/{collaborator_gid}";
     ];
 
-    # Link to the alternative names of the country
+    # Link to the collaboration artist
     rr:predicateObjectMap [
         rr:predicate mo:collaborated_with;
         rr:objectMap [ 
