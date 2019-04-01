@@ -1,6 +1,15 @@
 \section{Methodology}
-In order to solve the issue previously mentioned through the use of knowledge graphs, the differences of the information contained among different open data platforms will be assessed and a way to complete the information between sources will be studied and tried.  
+In order to solve the issue previously mentioned using knowledge graphs, the differences of the information contained among different open data platforms were assessed and a way to complete the information between sources was studied and tried.  
 
-Three different sources will be used in this project. MusicBrainz, the music database, will be the main source of the information whereas DBpedia and Wikidata will be used to analyse the differences and complete the information of the original information.  
+Three different sources were used in this project. MusicBrainz, the music database, will be the main source of the information whereas DBpedia and Wikidata will be used to analyse the differences and complete the information of the original information.
+Therefore, the project is divided in two differentiated parts.
 
-Therefore, the project will be divided in two different phases: firstly, the knowledge graph will be generated from the database information and, secondly, different ways to interlink and complete the data will be analysed and used in order improve the original information. 
+The first part comprises the creation knowledge graph from the MusicBrainz data.
+This information is contained in a relational database that will be analysed and queried in order to obtain coherent and valuable information.
+Due to time limitations, the project will focus in the artists, genres and areas information as they content the most basic and important information to generate a description of a singer or group.  
+
+The knowledge graph is generated using R2RML \citep{r2rml-tool} that is capable of interacting with the database directly.
+Different mapping files (.ttl) and output files (.nt) were generated for the different kind of entities mapped in order to achieve a better project structure. 
+
+The second part of the project includes the interlinking and the completion of the previously generated data, using the information contained and Wikidata and DBpedia.
+For the linking process the tool LIMES is used whereas for the completion task different SPARQL queries are proposed and ran. 

@@ -1,3 +1,8 @@
+# This query generates a relation between the existent artist and the new genres
+# created in queries 3 and 4 using only the name of the artist, the entity type and
+# the year of foundation.
+# This query gets good results but is too specific.
+
 PREFIX mo: <http://purl.org/ontology/mo/>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX dbo: <http://dbpedia.org/ontology/>

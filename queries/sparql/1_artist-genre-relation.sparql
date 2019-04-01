@@ -1,3 +1,7 @@
+# This query generates the triples that will link the artist with the genres.
+# To do so, it uses the name of the tags included as an atribute for the artist
+# and link it with the genre of the same name.
+
 PREFIX mo: <http://purl.org/ontology/mo/>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX dbo: <http://dbpedia.org/ontology/>

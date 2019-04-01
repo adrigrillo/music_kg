@@ -1,1 +1,61 @@
-\section{title}
+\section{Development}
+In this section, the steps and actions taken to develop this project will be briefly described\footnote{A detailed explanation of the development can be seen at \url{https://github.com/adrigrillo/music_kg/issues?q=is\%3Aissue+is\%3Aclosed}}.
+As it was outlined in the methodology method, the work can be divided in two parts, the creation and the interlinking and completion of the graph.
+
+\subsection{Graph creation}
+The selection of the MusicBrainz database to generate the knowledge graph was due to its specialization in music, that was the topic of interest for this project.
+Unlike DBpedia or Wikidata, that are general graphs, MusicBrainz focuses only in the music having a rather complex but clear schema\footnote{\url{https://beta.musicbrainz.org/doc/MusicBrainz_Database/Schema}}, where all the entities and properties are clearly defined.
+To create the knowledge graph from the MusicBrainz data various prerequisites were required.
+
+First, it was necessary to have all the information at hand.
+This was achieved using the virtual image provided by the platform, that generates a slave node of the database with replication capabilities.
+Event tough this option required a lot of time to reach the update state of the database, it was selected because other options either make to configure a full database, to import a dump, or was a rate limited endpoint.
+
+Secondly, a scalable tool to generate the triples (.nt) from the database information was required.
+Because of the limitation of the RMLMapper \citep{rmlmapper} project that saves intermediate results in memory, the project R2RML was picked to generate the output from the mapping files. 
+
+Lastly, the mapping files had to be created to make the tool work.
+Due to the time limitations of the project and the complexity of analysing all the database schema, only mapping files for the artists, genres and areas where generated.
+Except for the genres, a mapping file is composed by a set a SQL queries that extract some information and a set of statements that generate the graph entities, with an identifying URI and a set of properties.
+
+Different ontologies and vocabularies where used in the creation of the graph in order to follow a standardized way.
+Due to the music specialization of the project, The Music Ontology \citep{music_ontology} is the default model of the graph and is used to define the artist and the genres.
+However, it has its limitations to define other non-related entities, like the areas, and, so, other ontologies like the LinkedGeoData \citep{linkedgeodata} where used. 
+
+Different decisions were taken during the creation of the mapping files depending of the entity to map:
+
+\subsubsection{Areas (\textit{area-mapping.ttl})}
+The areas table in MusicBrainz describes the zone where the artists come from and, also, to situate places, like recording studios, festivals, etc.
+They are divided using a hierarchical relation were the countries are the root for all the relations, this is, any area is connected directly or indirectly to the countries.  
+
+Due to the richness in concepts of the LinkedGeoData ontology, it was possible to designate a type of entity to each of the different types of area of the database.
+Moreover, the relation between entities was modelled in a smaller to bigger category way, using the is part of definition.
+In general, an area instance is composed by an URI, used as id, the type of area is it, the official name and a list of aliases that are used. 
+
+\subsubsection{Genres (\textit{genres-mapping.ttl})}
+The genres in the MusicBrainz database are hardcoded in the server, in a way that an artist has a set of tags where, apart from the genres, user created elements coexist.
+However, a list with the genres accepted in the database is available and was used to generate this part of the graph.
+Because there is not a page that describe the genres, the URI generated for these instances is invented. 
+
+\subsubsection{Artist (\textit{artist-mapping.ttl})}
+The artists part was the most complex to model because of the high number of relations that can be found. In this case, MusicBrainz generates a distinction between individuals and groups that will be used to classify the entities between the definitions of \textit{MusicArtist} or \textit{MusicGroup}. Depending of the kind of entity the properties of those changes, musicians have a gender and the dates indicates the birth and death year whereas groups do not have gender and the dates highlight the foundation and dissolution years. 
+
+Because the MusicBrainz database is specialized in music, not only the information of the groups is available but also the information about their components, that are instances also. This situation was handled with the definitions of \textit{member} and \textit{supporting\_musician}. Additionally, to add more information to the graph, the collaborations between artist were also added. 
+
+\subsubsection{Artis-Genre relation}
+As it was mentioned before, the artists are linked to a set of tags where the genres are included along other user-generated words.
+To solve this situation and generate a relation between the artist and the genre entities the following process was followed:
+
+\begin{enumerate}
+\item All the tags of the artist were included as a property using the tag string. This is provided in the file \textit{artist-mapping\_with-tag.ttl} in the triples map called \textit{\#GenresTriples}.
+
+\item A SPARQL query (\textit{1\_artist-genre-relation.txt}) was used to generate the triples that link the artist and the genre matching the name of the tag with the name of the genre.
+
+\item All the tags from the artist were removed of its properties as they do not provide valuable information.
+Additionally, a SPARQL query (\textit{2\_empty-artists-remove.txt}) were ran to remove invalid artist-genre relations.
+\end{enumerate}
+
+This method was required because of the incompatibility of generating a URI with the R2RML tool as strange characters were included in the tags string, like Chinese words and Unicode emojis. 
+The file \textit{artist-mapping.ttl} contains all the artists triples without including the tags.
+
+% TODO: CONTINUE WITH MAPPING AND EVERYTHING

@@ -1,3 +1,6 @@
+# This query generate the entities for the genres that are available in DBpedia
+# but not in the original graph.
+
 PREFIX mo: <http://purl.org/ontology/mo/>
 PREFIX dc: <http://purl.org/dc/elements/1.1/>
 PREFIX dbo: <http://dbpedia.org/ontology/>

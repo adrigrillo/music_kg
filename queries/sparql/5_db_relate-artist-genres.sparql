@@ -1,0 +1,38 @@
+# This query generates a relation between the existent artist and the new genres
+# created in queries 3 and 4 using only the name of the artist.
+# Is too generic the results are poor
+
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+construct {
+    ?artist dbo:genre ?genre
+}
+where {
+    service <http://dbpedia.org/sparql> {
+        ?db_artist foaf:name ?db_artist_name_en .
+        ?db_artist rdf:type dbo:Agent .
+        ?db_artist dbo:genre ?db_genre .
+        ?db_genre rdfs:label ?db_genre_name_en .
+        bind(str(?db_artist_name_en) as ?db_artist_name) .
+        filter(langMatches(lang(?db_genre_name_en), "en")) .
+        bind(replace(lcase(str(?db_genre_name_en)),"[\\(.*\\)]","") AS ?db_genre_name) .
+    }
+    filter exists {
+        ?genre a mo:Genre .
+   		?genre rdfs:label ?db_genre_name
+    }
+    ?genre a mo:Genre .
+    ?artist rdfs:label ?db_artist_name .
+    filter not exists {
+        ?artist dbo:genre ?artist_genre .
+        ?artist_genre a mo:Genre .
+        ?artist_genre rdfs:label ?db_genre_name
+    }
+}

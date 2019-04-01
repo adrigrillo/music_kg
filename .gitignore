@@ -5,6 +5,7 @@
 *.nt
 *.ser
 *statistics.json
+deliverable/*
 
 ### Java ###
 # Compiled class file

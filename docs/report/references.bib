@@ -1,3 +1,58 @@
+@online{lov,
+title = {{Linked data open cloud}},
+url = {https://lod-cloud.net/},
+urldate = {2019-03-31}
+}
+@online{geonames,
+title = {{GeoNames}},
+url = {https://www.geonames.org}
+}
+@inproceedings{music_ontology,
+abstract = {We describe an information management system which addresses the needs of music analysis projects, pro- viding a logic-based knowledge representation scheme for the many types of object in the domains of music and signal processing, including musical works and scores, performance events, human agents, signals, anal- ysis functions, and analysis results. The system is implemented using logic-programming and semantic web technologies, and provides a shareable resource for use in a laboratory environment. The whole is driven from a Prolog command line, where the use of Matlab as a computational engine enables experiments to be designed and run with the results being automatically stored and indexed into the information structure. We present as a case-study an experiment in automatic music segmentation.},
+author = {Abdallah, Samer and Raimond, Yves and Sandler, Mark},
+booktitle = {120th Convention of the Audio Engineering Society},
+pages = {10},
+title = {{An ontology-based approach to information management for music analysis systems}},
+volume = {1},
+year = {2006}
+}
+@inproceedings{dbpedia,
+abstract = {DBpedia is a community effort to extract structured information from Wikipedia and to make this information available on the Web. DBpedia allows you to ask sophisticated queries against datasets derived from Wikipedia and to link other datasets on the Web to Wikipedia data. We describe the extraction of the DBpedia datasets, and how the resulting information can be made available on the Web for humans and machines. We describe some emerging applications from the DBpedia community and show how website operators can reduce costs by facilitating royalty-free DBpedia content within their sites. Finally, we present the current status of interlinking DBpedia with other open datasets on the Web and outline how DBpedia could serve as a nucleus for an emerging Web of open data sources.},
+author = {Auer, S{\"{o}}ren and Bizer, Christian and Kobilarov, Georgi and Lehmann, Jens and Cyganiak, Richard and Ives, Zachary},
+booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+doi = {10.1007/978-3-540-76298-0_52},
+isbn = {3540762973},
+issn = {03029743},
+pages = {722--735},
+publisher = {Springer},
+title = {{DBpedia: A nucleus for a Web of open data}},
+volume = {4825 LNCS},
+year = {2007}
+}
+@inproceedings{minte,
+abstract = {Institutions from different domains require the integration of data coming from heterogeneous Web sources. Typical use cases include Knowledge Search, Knowledge Building, and Knowledge Completion. We report on the implementation of the RDF Molecule-Based Integration Framework MINTE + in three domain-specific applications: Law Enforcement, Job Market Analysis, and Manufacturing. The use of RDF molecules as data representation and a core element in the framework gives MINTE + enough flexibility to synthesize knowledge graphs in different domains. We first describe the challenges in each domain-specific application, then the implementation and configuration of the framework to solve the particular problems of each domain. We show how the parameters defined in the framework allow to tune the integration process with the best values according to each domain. Finally, we present the main results, and the lessons learned from each application.},
+author = {Collarana, Diego and Galkin, Mikhail and Lange, Christoph and Scerri, Simon and Auer, S{\"{o}}ren and Vidal, Maria Esther},
+booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+doi = {10.1007/978-3-030-00668-6_22},
+isbn = {9783030006679},
+issn = {16113349},
+keywords = {Data integration,Knowledge graphs,RDF,RDF molecules},
+pages = {359--375},
+title = {{Synthesizing knowledge graphs from web sources with the MINTE+ Framework}},
+volume = {11137 LNCS},
+year = {2018}
+}
+@online{lastfm,
+author = {Corporation, C B S},
+title = {{Last.fm}},
+url = {https://www.last.fm/}
+}
+@online{musicbrainz_endpoint,
+author = {DBTune},
+title = {{MusicBrainz D2R server}},
+url = {http://dbtune.org/musicbrainz/},
+urldate = {2019-03-31}
+}
 @inproceedings{Ehrlinger2016,
 abstract = {Recently, the term knowledge graph has been used frequently in research and business, usually in close association with Semantic Web technologies, linked data, large-scale data analytics and cloud computing. Its popularity is clearly in- fluenced by the introduction of Google's Knowledge Graph in 2012, and since then the term has been widely used without a definition. A large variety of interpretations has hampered the evolution of a common understanding of knowledge graphs. Numerous research papers refer to Google's Knowledge Graph, although no official documentation about the used methods exists. The prerequisite for widespread academic and commercial adoption of a concept or technology is a common understanding, based ideally on a definition that is free from ambiguity. We tackle this issue by discussing and defining the term knowledge graph, considering its history and diversity in interpretations and use. Our goal is to propose a definition of knowledge graphs that serves as basis for discussions on this topic and contributes to a common vision.},
 author = {Ehrlinger, Lisa and W{\"{o}}{\ss}, Wolfram},
@@ -8,16 +63,20 @@ pmid = {21935371},
 title = {{Towards a definition of knowledge graphs}},
 year = {2016}
 }
-@inproceedings{limes,
-abstract = {The Linked Data paradigm has evolved into a powerful en- abler for the transition from the document-oriented Web into the Semantic Web. While the amount of data pub- lished as Linked Data grows steadily and has surpassed 25 billion triples, less than 5{\%} of these triples are links be- tween knowledge bases. Link discovery frameworks provide the functionality necessary to discover missing links between knowledge bases in a semi-automatic fashion. Yet, the task of linking knowledge bases requires a significant amount of time, especially when it is carried out on large data sets. This paper presents and evaluates LIMES - a novel time- efficient approach for link discovery in metric spaces. Our approach utilizes the mathematical characteristics of metric spaces to compute estimates of the similarity between in- stances. These estimates are then used to filter out a large amount of those instance pairs that do not suffice the map- ping conditions. Thus, LIMES can reduce the number of comparisons needed during the mapping process by several orders of magnitude. We present the mathematical founda- tion and the core algorithms employed in the implementa- tion. We evaluate LIMES with synthetic data to elucidate its behavior on small and large data sets with different con- figurations and show that our approach can significantly re- duce the time complexity of a mapping task. In addition, we compare the runtime of our framework with a state-of- the-art link discovery tool. We show that LIMES is more than 60 times faster when mapping large knowledge bases. Categories and Subject Descriptors H.m [Information Systems]: Miscellaneous General Terms Web of Data, Link Data, Link Discovery Keywords Linked Data,Web of Data, Link Discovery, Record Linkage},
-author = {Ngomo, Axel Cyrille Ngonga and Auer, S{\"{o}}ren},
-booktitle = {IJCAI International Joint Conference on Artificial Intelligence},
-doi = {10.5591/978-1-57735-516-8/IJCAI11-385},
-isbn = {9781577355120},
-issn = {10450823},
-pages = {2312--2317},
-title = {{LIMES - A time-efficient approach for large-scale link discovery on the web of data}},
-year = {2011}
+@online{musicbrainz,
+author = {Foundation, MetaBrainz},
+title = {{MusicBrainz}},
+url = {https://musicbrainz.org/}
+}
+@online{wikipedia,
+author = {Foundation, Wikimedia},
+title = {{Wikipedia}},
+url = {https://en.wikipedia.org/wiki/Wikipedia}
+}
+@online{wikidata,
+author = {Foundation, Wikimedia},
+title = {{Wikidata}},
+url = {https://www.wikidata.org}
 }
 @book{linking_book,
 abstract = {The World Wide Web has enabled the creation of a global information space comprising linked documents. As the Web becomes ever more enmeshed with our daily lives, there is a growing desire for direct access to raw data not currently available on the Web or bound up in hypertext documents. Linked Data provides a publishing paradigm in which not only documents, but also data, can be a first class citizen of the Web, thereby enabling the extension of the Web with a global data space based on open standards - the Web of Data. In this Synthesis lecture we provide readers with a detailed technical introduction to Linked Data. We begin by outlining the basic principles of Linked Data, including coverage of relevant aspects of Web architecture. The remainder of the text is based around two main themes - the publication and consumption of Linked Data. Drawing on a practical Linked Data scenario, we provide guidance and best practices on: architectural approaches to publishing Linked Data; choosing URIs an...},
@@ -30,6 +89,35 @@ number = {1},
 pages = {1--136},
 title = {{Linked Data: Evolving the Web into a Global Data Space}},
 volume = {1},
+year = {2011}
+}
+@online{music_report_2018,
+author = {IFPA},
+isbn = {1426-9686 (Print)$\backslash$r1426-9686 (Linking)},
+issn = {1426-9686 (Print)},
+title = {{IFPI Global Music Report 2018}},
+url = {https://ifpi.org/news/IFPI-GLOBAL-MUSIC-REPORT-2018},
+year = {2018}
+}
+@inproceedings{base_population,
+abstract = {In this paper we give an overview of the Knowledge Base Population (KBP) track at the 2010 Text Analysis Conference. The main goal of KBP is to promote research in discovering facts about entities and augmenting a knowledge base (KB) with these facts. This is done through two tasks, Entity Linking -- linking names in context to entities in the KB -- and Slot Filling -- adding information about an entity to the KB. A large source collection of newswire and web documents is provided from which systems are to discover information. Attributes ("slots") derived from Wikipedia infoboxes are used to create the reference KB. In this paper we provide an overview of the techniques which can serve as a basis for a good KBP system, lay out the remaining challenges by comparison with traditional Information Extraction (IE) and Question Answering (QA) tasks, and provide some suggestions to address these challenges.},
+author = {Ji, Heng and Grishman, Ralph},
+booktitle = {Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1},
+isbn = {9781932432879},
+pages = {1148--1158},
+title = {{Knowledge base population: successful approaches and challenges}},
+url = {https://dl.acm.org/citation.cfm?id=2002618},
+year = {2007}
+}
+@inproceedings{limes,
+abstract = {The Linked Data paradigm has evolved into a powerful en- abler for the transition from the document-oriented Web into the Semantic Web. While the amount of data pub- lished as Linked Data grows steadily and has surpassed 25 billion triples, less than 5{\%} of these triples are links be- tween knowledge bases. Link discovery frameworks provide the functionality necessary to discover missing links between knowledge bases in a semi-automatic fashion. Yet, the task of linking knowledge bases requires a significant amount of time, especially when it is carried out on large data sets. This paper presents and evaluates LIMES - a novel time- efficient approach for link discovery in metric spaces. Our approach utilizes the mathematical characteristics of metric spaces to compute estimates of the similarity between in- stances. These estimates are then used to filter out a large amount of those instance pairs that do not suffice the map- ping conditions. Thus, LIMES can reduce the number of comparisons needed during the mapping process by several orders of magnitude. We present the mathematical founda- tion and the core algorithms employed in the implementa- tion. We evaluate LIMES with synthetic data to elucidate its behavior on small and large data sets with different con- figurations and show that our approach can significantly re- duce the time complexity of a mapping task. In addition, we compare the runtime of our framework with a state-of- the-art link discovery tool. We show that LIMES is more than 60 times faster when mapping large knowledge bases. Categories and Subject Descriptors H.m [Information Systems]: Miscellaneous General Terms Web of Data, Link Data, Link Discovery Keywords Linked Data,Web of Data, Link Discovery, Record Linkage},
+author = {Ngomo, Axel Cyrille Ngonga and Auer, S{\"{o}}ren},
+booktitle = {IJCAI International Joint Conference on Artificial Intelligence},
+doi = {10.5591/978-1-57735-516-8/IJCAI11-385},
+isbn = {9781577355120},
+issn = {10450823},
+pages = {2312--2317},
+title = {{LIMES - A time-efficient approach for large-scale link discovery on the web of data}},
 year = {2011}
 }
 @article{refinement_survey,
@@ -45,58 +133,22 @@ title = {{Knowledge graph refinement: A survey of approaches and evaluation meth
 volume = {8},
 year = {2017}
 }
-@inproceedings{minte,
-abstract = {Institutions from different domains require the integration of data coming from heterogeneous Web sources. Typical use cases include Knowledge Search, Knowledge Building, and Knowledge Completion. We report on the implementation of the RDF Molecule-Based Integration Framework MINTE + in three domain-specific applications: Law Enforcement, Job Market Analysis, and Manufacturing. The use of RDF molecules as data representation and a core element in the framework gives MINTE + enough flexibility to synthesize knowledge graphs in different domains. We first describe the challenges in each domain-specific application, then the implementation and configuration of the framework to solve the particular problems of each domain. We show how the parameters defined in the framework allow to tune the integration process with the best values according to each domain. Finally, we present the main results, and the lessons learned from each application.},
-author = {Collarana, Diego and Galkin, Mikhail and Lange, Christoph and Scerri, Simon and Auer, S{\"{o}}ren and Vidal, Maria Esther},
-booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
-doi = {10.1007/978-3-030-00668-6_22},
-isbn = {9783030006679},
-issn = {16113349},
-keywords = {Data integration,Knowledge graphs,RDF,RDF molecules},
-pages = {359--375},
-title = {{Synthesizing knowledge graphs from web sources with the MINTE+ Framework}},
-volume = {11137 LNCS},
-year = {2018}
+@online{spotify,
+author = {SA, Spotify Technology},
+title = {{Spotify}},
+url = {https://www.spotify.com}
 }
-@inproceedings{dbpedia,
-abstract = {DBpedia is a community effort to extract structured information from Wikipedia and to make this information available on the Web. DBpedia allows you to ask sophisticated queries against datasets derived from Wikipedia and to link other datasets on the Web to Wikipedia data. We describe the extraction of the DBpedia datasets, and how the resulting information can be made available on the Web for humans and machines. We describe some emerging applications from the DBpedia community and show how website operators can reduce costs by facilitating royalty-free DBpedia content within their sites. Finally, we present the current status of interlinking DBpedia with other open datasets on the Web and outline how DBpedia could serve as a nucleus for an emerging Web of open data sources.},
-author = {Auer, S{\"{o}}ren and Bizer, Christian and Kobilarov, Georgi and Lehmann, Jens and Cyganiak, Richard and Ives, Zachary},
-booktitle = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
-doi = {10.1007/978-3-540-76298-0_52},
-isbn = {3540762973},
-issn = {03029743},
-pages = {722--735},
-publisher = {Springer},
-title = {{DBpedia: A nucleus for a Web of open data}},
-volume = {4825 LNCS},
-year = {2007}
-}
-@online{music_report_2018,
-author = {IFPA},
-isbn = {1426-9686 (Print)$\backslash$r1426-9686 (Linking)},
-issn = {1426-9686 (Print)},
-title = {{IFPI Global Music Report 2018}},
-url = {https://ifpi.org/news/IFPI-GLOBAL-MUSIC-REPORT-2018},
-year = {2018}
-}
-@inproceedings{music_ontology,
-abstract = {We describe an information management system which addresses the needs of music analysis projects, pro- viding a logic-based knowledge representation scheme for the many types of object in the domains of music and signal processing, including musical works and scores, performance events, human agents, signals, anal- ysis functions, and analysis results. The system is implemented using logic-programming and semantic web technologies, and provides a shareable resource for use in a laboratory environment. The whole is driven from a Prolog command line, where the use of Matlab as a computational engine enables experiments to be designed and run with the results being automatically stored and indexed into the information structure. We present as a case-study an experiment in automatic music segmentation.},
-author = {Abdallah, Samer and Raimond, Yves and Sandler, Mark},
-booktitle = {120th Convention of the Audio Engineering Society},
-pages = {10},
-title = {{An ontology-based approach to information management for music analysis systems}},
-volume = {1},
-year = {2006}
-}
-@inproceedings{base_population,
-abstract = {In this paper we give an overview of the Knowledge Base Population (KBP) track at the 2010 Text Analysis Conference. The main goal of KBP is to promote research in discovering facts about entities and augmenting a knowledge base (KB) with these facts. This is done through two tasks, Entity Linking -- linking names in context to entities in the KB -- and Slot Filling -- adding information about an entity to the KB. A large source collection of newswire and web documents is provided from which systems are to discover information. Attributes ("slots") derived from Wikipedia infoboxes are used to create the reference KB. In this paper we provide an overview of the techniques which can serve as a basis for a good KBP system, lay out the remaining challenges by comparison with traditional Information Extraction (IE) and Question Answering (QA) tasks, and provide some suggestions to address these challenges.},
-author = {Ji, Heng and Grishman, Ralph},
-booktitle = {Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies - Volume 1},
-isbn = {9781932432879},
-pages = {1148--1158},
-title = {{Knowledge base population: successful approaches and challenges}},
-url = {https://dl.acm.org/citation.cfm?id=2002618},
-year = {2007}
+@article{completion_open,
+abstract = {Knowledge Graphs (KGs) have been applied to many tasks including Web search, link prediction, recommendation, natural language processing, and entity linking. However, most KGs are far from complete and are growing at a rapid pace. To address these problems, Knowledge Graph Completion (KGC) has been proposed to improve KGs by filling in its missing connections. Unlike existing methods which hold a closed-world assumption, i.e., where KGs are fixed and new entities cannot be easily added, in the present work we relax this assumption and propose a new open-world KGC task. As a first attempt to solve this task we introduce an open-world KGC model called ConMask. This model learns embeddings of the entity's name and parts of its text-description to connect unseen entities to the KG. To mitigate the presence of noisy text descriptions, ConMask uses a relationship-dependent content masking to extract relevant snippets and then trains a fully convolutional neural network to fuse the extracted snippets with entities in the KG. Experiments on large data sets, both old and new, show that ConMask performs well in the open-world KGC task and even outperforms existing KGC models on the standard closed-world KGC task.},
+archivePrefix = {arXiv},
+arxivId = {1711.03438},
+author = {Shi, Baoxu and Weninger, Tim},
+eprint = {1711.03438},
+journal = {CoRR},
+title = {{Open-World Knowledge Graph Completion}},
+url = {http://arxiv.org/abs/1711.03438},
+volume = {abs/1711.0},
+year = {2017}
 }
 @inproceedings{silk,
 abstract = {The Web of Data is built upon two simple ideas: Employ the RDF data model to publish structured data on the Web and to create explicit data links between entities within different data sources. This paper presents the Silk – Linking Framework, a toolkit for discovering and maintaining data links between Web data sources. Silk consists of three components: 1. A link discovery engine, which computes links between data sources based on a declarative specification of the conditions that entities must fulfill in order to be interlinked; 2. A tool for evaluating the generated data links in order to fine-tune the linking specification; 3. A protocol for maintaining data links between continuously changing data sources. The protocol allows data sources to exchange both linksets as well as detailed change information and enables continuous link recomputation. The interplay of all the components is demonstrated within a life science use case.},
@@ -111,49 +163,22 @@ title = {{Discovering and maintaining links on the Web of data}},
 volume = {5823 LNCS},
 year = {2009}
 }
-@article{completion_open,
-abstract = {Knowledge Graphs (KGs) have been applied to many tasks including Web search, link prediction, recommendation, natural language processing, and entity linking. However, most KGs are far from complete and are growing at a rapid pace. To address these problems, Knowledge Graph Completion (KGC) has been proposed to improve KGs by filling in its missing connections. Unlike existing methods which hold a closed-world assumption, i.e., where KGs are fixed and new entities cannot be easily added, in the present work we relax this assumption and propose a new open-world KGC task. As a first attempt to solve this task we introduce an open-world KGC model called ConMask. This model learns embeddings of the entity's name and parts of its text-description to connect unseen entities to the KG. To mitigate the presence of noisy text descriptions, ConMask uses a relationship-dependent content masking to extract relevant snippets and then trains a fully convolutional neural network to fuse the extracted snippets with entities in the KG. Experiments on large data sets, both old and new, show that ConMask performs well in the open-world KGC task and even outperforms existing KGC models on the standard closed-world KGC task.},
-archivePrefix = {arXiv},
-arxivId = {1711.03438},
-author = {Shi, Baoxu and Weninger, Tim},
-eprint = {1711.03438},
-journal = {CoRR},
-title = {{Open-World Knowledge Graph Completion}},
-url = {http://arxiv.org/abs/1711.03438},
-volume = {abs/1711.0},
-year = {2017}
+@online{musicbrainz_map,
+author = {MetaBrainz},
+title = {{MusicBrainz mappings}},
+url = {https://github.com/metabrainz/MusicBrainz-R2RML}
 }
-@online{musicbrainz_rdf,
-title = {{Linked data open cloud}},
-url = {https://lod-cloud.net/},
-urldate = {2019-03-31}
+@online{r2rml-tool,
+author = {Malic, Alexander},
+title = {{R2RML}},
+url = {https://github.com/amalic/r2rml}
 }
-@online{wikidata,
-author = {Foundation, Wikimedia},
-title = {{Wikidata}},
-url = {https://www.wikidata.org}
+@online{rmlmapper,
+author = {(RML), R D F Mapping Language},
+title = {{RMLMapper}},
+url = {https://github.com/RMLio/rmlmapper-java}
 }
-@online{geonames,
-title = {{GeoNames}},
-url = {https://www.geonames.org}
-}
-@online{lastfm,
-author = {Corporation, C B S},
-title = {{Last.fm}},
-url = {https://www.last.fm/}
-}
-@online{musicbrainz,
-author = {Foundation, MetaBrainz},
-title = {{MusicBrainz}},
-url = {https://musicbrainz.org/}
-}
-@online{wikipedia,
-author = {Foundation, Wikimedia},
-title = {{Wikipedia}},
-url = {https://en.wikipedia.org/wiki/Wikipedia}
-}
-@online{spotify,
-author = {SA, Spotify Technology},
-title = {{Spotify}},
-url = {https://www.spotify.com}
+@online{linkedgeodata,
+title = {{LinkedGeoData}},
+url = {http://linkedgeodata.org/About}
 }

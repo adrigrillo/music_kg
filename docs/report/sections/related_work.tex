@@ -1,1 +1,9 @@
 \section{Related work}
+Different projects had used the MusicBrainz dataset to generate a knowledge graph in order to improve the connectivity with the linked data initiative, however they have been discontinued because of the lack of resources.
+Nevertheless, some official information exists about the process of generating a graph \citep{musicbrainz_map} and, also, a non-official SPARQL endpoint \citep{musicbrainz_endpoint} 
+
+Especially remarkable is the \citet{musicbrainz_map} project, that provides the mapping files and some scripts to generate the KG directly. This work was considered to quickly generate the graph for this project and focus in the linking and completion task. However, due to the unavailability of the tool required in the execution and the outdated structure of the mapping files, the generation of a new knowledge graph was undertaken. 
+
+Linking knowledge graphs have been a widely covered topic and one of the main purposes of the semantic web. Tools like LIMES \citep{limes} and the Silk \citep{silk} framework facilitates the task of interlinking different knowledge graphs and in \citet{linking_book} a review all the principles related with the task can be found. Additionally, there have been some efforts to use external and unstructured information to expand and improve existent knowledge graphs. 
+
+Although in \citet{refinement_survey} the possibility of using interlinked data is contemplated to complete the knowledge graph information, the mentioned approaches effort goes into predict either missing entities, missing types for entities, and/or missing relations that hold between entities. However, there is not much work that covers the problem of completing and filling the information of existent entities with the use of external sources.
