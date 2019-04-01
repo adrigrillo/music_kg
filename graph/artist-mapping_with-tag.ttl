@@ -290,7 +290,7 @@
         rr:template "http://musicbrainz.org/artist/{band_gid}";
     ];
 
-    # Link to the alternative names of the country
+    # Link to the the member
     rr:predicateObjectMap [
         rr:predicate mo:member;
         rr:objectMap [ 
@@ -324,9 +324,9 @@
         rr:template "http://musicbrainz.org/artist/{band_gid}";
     ];
 
-    # Link to the alternative names of the country
+    # Link to the supporting musician
     rr:predicateObjectMap [
-        rr:predicate mo:member;
+        rr:predicate mo:supporting_musician;
         rr:objectMap [ 
             rr:template "http://musicbrainz.org/artist/{supporter_gid}";
         ];
@@ -384,7 +384,7 @@
         rr:template "http://musicbrainz.org/artist/{gid}";
     ];
 
-    # Link to the alternative names of the country
+    # Link to alias
     rr:predicateObjectMap [
         rr:predicate skos:altLabel;
         rr:objectMap [ 
