@@ -42,7 +42,7 @@ The artists part was the most complex to model because of the high number of rel
 
 Because the MusicBrainz database is specialized in music, not only the information of the groups is available but also the information about their components, that are instances also. This situation was handled with the definitions of \textit{member} and \textit{supporting\_musician}. Additionally, to add more information to the graph, the collaborations between artist were also added. 
 
-\subsubsection{Artis-Genre relation}
+\subsubsection{Artist-Genre relation}
 As it was mentioned before, the artists are linked to a set of tags where the genres are included along other user-generated words.
 To solve this situation and generate a relation between the artist and the genre entities the following process was followed:
 
@@ -58,4 +58,39 @@ Additionally, a SPARQL query (\textit{2\_empty-artists-remove.txt}) were ran to 
 This method was required because of the incompatibility of generating a URI with the R2RML tool as strange characters were included in the tags string, like Chinese words and Unicode emojis. 
 The file \textit{artist-mapping.ttl} contains all the artists triples without including the tags.
 
-% TODO: CONTINUE WITH MAPPING AND EVERYTHING
+Regarding the general process of creation of the knowledge graph, an overview of the composition of the graph and the content will be further developed in the next section.
+
+\subsection{Interlinking and completion}
+Although interlinking and the completion of the data are two different tasks, in this case, they are tightly related as the same kind of situation were found during the execution of the tasks.
+The external sources used to improve the quality of our previously generated graph are Wikidata and DBpedia, that are general purpose open access knowledge graphs maintained by their respective communities and that allow any user to add information. 
+
+In this part of the project, the genres are the part of the graph where most of the attention were put because of the lack of content and context available in the original information.
+
+\subsubsection{Interlinking}
+The interlinking task was done using LIMES, that allows the linking of two different knowledge graphs with the use of SPARQL. The configuration files for the linking process between genres of the original graph and the ones of Wikidata and DBPedia can be found in the files \textit{genres\_wikidata-config.xml} and \textit{genres\_dbpedia-config.xml} respectively.  
+
+The interlink between artist was also tried without successful results, a configuration to relate the groups of the graph with DBpedia can be found in the file \textit{groups\_dbpedia-config.xml}. Further discussion about this results will be developed in the following section.
+
+\subsubsection{Completion of the graph}
+The completion of the existing graph where performed with the use of different double-sided SPARQL queries, that perform their work in more than one graph. 
+In this case the connected graphs were the original MusicBrainz graph and Wikidata or DBpedia.
+As in the previous case, this work focused in the genres part of the graph, setting two different objectives. 
+
+Firstly, after an examination of the genres present in the external sources, whose number was superior, the decision of including the missing genres in the original graph was taken.
+This process implied the query and comparison of all the genres contained in the external sources in order to include the ones missing.  
+
+Due to the clear definitions of the genres in both of external sources, this process was simple and limited to the extraction of all the entities of the type \textit{genre} and its names.
+Additionally, due to the previous linking process the discarding of the already present genres was made comparing the URIs, if existent. Otherwise, a matching in the was used.
+The queries of this process can be found in the files \textit{2\_wd\_add-new-genres.txt} and \textit{3\_db\_add-new-genres.txt}. 
+
+Secondly, as having instances in a graph with any kind of relation does not generates any value, the following step was to relate the existent artist with the new genres. The only way to accomplish this task was through the use of the external graphs, that were the source of the information. 
+
+Using SPARQL, the approach followed extracts all the artists linked to the genre of interest and generates a relation between them if and only if both exist in the graph. Regarding the matching of the artist of the original knowledge graph and the external source, two different approximations were tried: 
+
+\begin{itemize}
+\item Using only the name of the artist to generate the relation. This approach can be found in the files \textit{5\_db\_relate-artist-genres.txt} and \textit{6\_wd\_relate-artist-genres.txt}
+
+\item A stricter approach, that uses a specific property of the artist to make the relation between the two sources. It can be found, using the year of foundation, in the file \textit{7\_db\_relate-artist-genres-year.txt}.
+\end{itemize}
+
+The results of this process will be developed further in the next section.
