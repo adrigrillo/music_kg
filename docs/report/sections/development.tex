@@ -34,7 +34,7 @@ In general, an area instance is composed by an URI, used as id, the type of area
 
 \subsubsection{Genres (\textit{genres-mapping.ttl})}
 The genres in the MusicBrainz database are hardcoded in the server, in a way that an artist has a set of tags where, apart from the genres, user created elements coexist.
-However, a list with the genres accepted in the database is available and was used to generate this part of the graph.
+However, a list with the genres accepted in the database is available and was used to generate this part of the graph\footnote{It was generated using the \textit{genres.csv}}.
 Because there is not a page that describe the genres, the URI generated for these instances is invented. 
 
 \subsubsection{Artist (\textit{artist-mapping.ttl})}
@@ -61,13 +61,13 @@ The file \textit{artist-mapping.ttl} contains all the artists triples without in
 Regarding the general process of creation of the knowledge graph, an overview of the composition of the graph and the content will be further developed in the next section.
 
 \subsection{Interlinking and completion}
-Although interlinking and the completion of the data are two different tasks, in this case, they are tightly related as the same kind of situation were found during the execution of the tasks.
+Although interlinking and the completion of the data are two different tasks, in this case, they are tightly related as the same kind of situations were found during the execution of the tasks.
 The external sources used to improve the quality of our previously generated graph are Wikidata and DBpedia, that are general purpose open access knowledge graphs maintained by their respective communities and that allow any user to add information. 
 
 In this part of the project, the genres are the part of the graph where most of the attention were put because of the lack of content and context available in the original information.
 
 \subsubsection{Interlinking}
-The interlinking task was done using LIMES, that allows the linking of two different knowledge graphs with the use of SPARQL. The configuration files for the linking process between genres of the original graph and the ones of Wikidata and DBPedia can be found in the files \textit{genres\_wikidata-config.xml} and \textit{genres\_dbpedia-config.xml} respectively.  
+The interlinking task was done using LIMES, that allows the linking of two different knowledge graphs with the use of SPARQL. The configuration files for the linking process between genres of the original graph and the ones of Wikidata and DBpedia can be found in the files \textit{genres\_wikidata-config.xml} and \textit{genres\_dbpedia-config.xml} respectively.  
 
 The interlink between artist was also tried without successful results, a configuration to relate the groups of the graph with DBpedia can be found in the file \textit{groups\_dbpedia-config.xml}. Further discussion about this results will be developed in the following section.
 
@@ -80,7 +80,7 @@ Firstly, after an examination of the genres present in the external sources, who
 This process implied the query and comparison of all the genres contained in the external sources in order to include the ones missing.  
 
 Due to the clear definitions of the genres in both of external sources, this process was simple and limited to the extraction of all the entities of the type \textit{genre} and its names.
-Additionally, due to the previous linking process the discarding of the already present genres was made comparing the URIs, if existent. Otherwise, a matching in the was used.
+Additionally, due to the previous linking process the discarding of the already present genres was made comparing the URIs, if existent. Otherwise, name matching was used.
 The queries of this process can be found in the files \textit{2\_wd\_add-new-genres.txt} and \textit{3\_db\_add-new-genres.txt}. 
 
 Secondly, as having instances in a graph with any kind of relation does not generates any value, the following step was to relate the existent artist with the new genres. The only way to accomplish this task was through the use of the external graphs, that were the source of the information. 

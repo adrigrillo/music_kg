@@ -1,5 +1,5 @@
 \section{Findings and results}
-As an overview of the overall project, the resulting knowledge graph generated contains more than seven million of statements.
+As an overview of the overall project, the resulting knowledge graph\footnote{The output files of the graph can be found in: \url{https://1drv.ms/f/s!AnzM-42un3oRrHHXYaTQIesWyNtB}} generated contains more than seven million of statements.
 To imagine how big this graph could have become, it is worth remembering that only the information related with the artists, genres and locations from the original dataset was used to generate the graph.
 Moreover, with respect of the MusicBrainz database, there exist more than twenty million of albums and tracks instances.
 
@@ -10,24 +10,24 @@ Moreover, with respect of the MusicBrainz database, there exist more than twenty
 \label{fig:classes}
 \end{figure} 
 
-Regarding the composition of the graph, entities of ten different classes exist, being \textit{MusicArtist}, \textit{MusicGroup} and City the three with more instances, figure \ref{fig:classes}. In the subfigure \ref{subfig:green_day}, a graphical example of the knowledge graph can be appreciated showing the information of a rather complete music group. The example shows most of the possible relations that can be found, having as the centre node a group band, it is related with some genres (yellow), their members and supporting musicians (purple) and the area it comes from (blue).
+Regarding the composition of the graph, entities of ten different classes exist, being \textit{MusicArtist}, \textit{MusicGroup} and \textit{City} the three with more instances (figure \ref{fig:classes}). In the subfigure \ref{subfig:green_day}, a graphical example of the knowledge graph can be appreciated showing the information of a rather complete music group. The example shows most of the possible relations that can be found, having as the centre node a group band, it is related with some genres (yellow), their members and supporting musicians (purple) and the area it comes from (blue).
 
 \begin{figure}[!tbh]
 	\centering
-	\begin{subfigure}{0.65\columnwidth}
+	\begin{subfigure}{\columnwidth}
 		\centering
-		\includegraphics[width=0.7\linewidth]{images/greenday.png}
+		\includegraphics[width=0.8\linewidth]{images/greenday.png}
 		\caption{Green Day information in the knowledge graph.}
 		\label{subfig:green_day}
 	\end{subfigure}
-	\begin{subfigure}{0.30\columnwidth}
+	\begin{subfigure}{\columnwidth}
 		\centering
-		\includegraphics[width=0.63\linewidth]{images/aspencat.png}
+		\includegraphics[width=0.5\linewidth]{images/aspencat.png}
 		\caption{Aspencat information in the knowledge graph.}
 		\label{subfig:aspencat}
 	\end{subfigure}
 
-	\caption{Comparison between \textbf{a.}known and commercial artist and \textbf{b.}alternative artist.}
+	\caption{Comparison between (\textbf{a}) known and commercial artist and (\textbf{b}) alternative artist.}
 	\label{fig:graph-comp}
 \end{figure}
 
@@ -55,19 +55,19 @@ However, this can be problematic when some of the data is missing in one of the 
 
 \begin{figure}[!tbh]
 	\centering
-	\begin{subfigure}{0.49\columnwidth}
+	\begin{subfigure}{\columnwidth}
 		\centering
 		\includegraphics[width=0.7\linewidth]{images/neo-psychedelia.png}
 		\caption{Before the completion task.}
 		\label{subfig:before}
 	\end{subfigure}
-	\begin{subfigure}{0.49\columnwidth}
+	\begin{subfigure}{\columnwidth}
 		\centering
 		\includegraphics[width=0.63\linewidth]{images/neo-after.png}
 		\caption{After the completion task.}
 		\label{subfig:after}
 	\end{subfigure}
-	\caption{Information of genre before and after the completion task that relates artist with the new genres.}
+	\caption{Information of a genre (\textbf{a}) before and (\textbf{b}) after the completion task that relates artist with the new genres.}
 	\label{fig:completion}
 \end{figure}
 
